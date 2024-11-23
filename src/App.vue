@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <h1 class="text-3xl font-bold underline bg-green-500">
-    Hello world!
+    Hello world! This is a deployment test
   </h1>
 </template>
 

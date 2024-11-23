@@ -32,6 +32,7 @@ const count = ref(0)
       target="_blank"
       >Vue Docs Scaling up Guide</a
     >.
+    <!-- This is a commit for issue #1 -->
   </p>
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>

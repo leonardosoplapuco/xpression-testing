@@ -33,7 +33,7 @@ if ! echo "$commit_message" | grep -Eq "$commit_regex"; then
 fi
 
 # Debugging: Output the message being checked for lowercase
-echo -e "\n${CYAN}DEBUG: Commit message being checked for lowercase:"
+echo -e "\n${CYAN}DEBUG: Commit message being checked for lowercase:${NC}"
 echo "$commit_message"  # This will show if there are hidden spaces or special characters
 
 # Check if the commit message contains any uppercase letters

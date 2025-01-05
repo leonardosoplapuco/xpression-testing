@@ -1,6 +1,28 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run lint
-npm run format
-npm run build
+# Define color variables
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No color
+
+echo -e "\n${GREEN}Running pre-commit hook${NC}"
+
+staged_files=$(git diff --name-only --cached --diff-filter=ACM)
+if [ -z "$staged_files" ]; then
+
+    files=$(echo "$staged_files" | grep -E '\.(js|jsx|ts|tsx|vue|json)$')
+
+    echo -e "\n${CYAN}Running prettier on staged files${NC}"
+    npm run format-staged $files
+    echo -e "\n${GREEN}Re-staging prettified files${NC}"
+    git add -v $files
+    echo -e "\n${CYAN}Running lint-staged${NC}"
+    npm run lint $files
+    echo -e "\n${GREEN}Re-staging linted files${NC}"
+    git add -v $files
+    echo -e "\n${CYAN}Running type check${NC}"
+    npm run type-check
+    # echo -e "\n${CYAN}Running tests in Inventory${NC}"
+    # npm run test:unit:run
+fi
